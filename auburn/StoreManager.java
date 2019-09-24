@@ -8,13 +8,12 @@ public class StoreManager {
         adapter.connect();
         ProductModel product = adapter.loadProduct(3);
 
-        System.out.println("Product: ID = " + product.mProductID + " Name = " + product.mName);
+        System.out.println("Loaded product: " + product);
 
         AddProductView apView = new AddProductView();
-        AddProductController apCtr = new AddProductController();
+        AddProductController apCtr = new AddProductController(apView, adapter);
+
         apView.setVisible(true);
 
-        apView.btnAdd.addActionListener(apCtr.addButtonListerner);
-        apView.btnCancel.addActionListener(apCtr.cancelButtonListerner);
     }
 }

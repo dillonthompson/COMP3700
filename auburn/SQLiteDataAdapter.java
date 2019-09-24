@@ -8,6 +8,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class SQLiteDataAdapter {
+
+    public static final int PRODUCT_SAVED_OK = 0;
+    public static final int PRODUCT_DUPLICATE_ERROR = 1;
+
     Connection conn = null;
 
     public void connect() {
@@ -42,9 +46,21 @@ public class SQLiteDataAdapter {
         }
         return product;
     }
-    public boolean saveProduct(ProductModel product) {
+    public int saveProduct(ProductModel product) {
+        try {
+            String sql = "INSERT INTO Products(ProductId, Name, Price, Quantity) VALUES " + product;
+            System.out.println(sql);
+            Statement stmt = conn.createStatement();
+            stmt.executeUpdate(sql);
 
-        return true;
+        } catch (Exception e) {
+            String msg = e.getMessage();
+            System.out.println(msg);
+            if (msg.contains("UNIQUE constraint failed"))
+                return PRODUCT_DUPLICATE_ERROR;
+        }
+
+        return PRODUCT_SAVED_OK;
     }
 
 }
