@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - StoreManager",
+            "request": "launch",
+            "mainClass": "edu.auburn.StoreManager"
+        }
+    ]
+}
