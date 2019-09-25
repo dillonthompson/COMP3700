@@ -1,0 +1,11 @@
+{
+    "sqltools.connections": [
+        {
+            "askForPassword": true,
+            "database": "./auburn/COMP3700db.db",
+            "dialect": "SQLite",
+            "name": "COMP3700"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}

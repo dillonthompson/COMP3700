@@ -3,17 +3,15 @@ package edu.auburn;
 public class StoreManager {
 
     public static void main(String[] args) {
-        System.out.println("Hello class!");
         SQLiteDataAdapter adapter = new SQLiteDataAdapter();
         adapter.connect();
-        ProductModel product = adapter.loadProduct(3);
-
-        System.out.println("Loaded product: " + product);
-
         AddProductView apView = new AddProductView();
+        AddCustomerView cView = new AddCustomerView();
+        AddCustomerController cCtr = new AddCustomerController(cView, adapter);
         AddProductController apCtr = new AddProductController(apView, adapter);
 
         apView.setVisible(true);
+        cView.setVisible(true);
 
     }
 }

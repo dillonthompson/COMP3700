@@ -7,18 +7,19 @@ import java.awt.event.ActionListener;
 public class AddProductController {
 
     public AddProductView view;
+    public AddCustomerView cview;
     public SQLiteDataAdapter adapter;
 
     public AddProductController(AddProductView view, SQLiteDataAdapter adapter)   {
         this.view = view;
         this.adapter = adapter;
 
-        this.view.btnAdd.addActionListener(new AddButtonListerner());
-        this.view.btnCancel.addActionListener(new CancelButtonListerner());
+        this.view.btnAdd.addActionListener(new AddButtonListener());
+        this.view.btnCancel.addActionListener(new CancelButtonListener());
 
     }
 
-    class AddButtonListerner implements ActionListener {
+    class AddButtonListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
@@ -71,7 +72,7 @@ public class AddProductController {
         }
     }
 
-    class CancelButtonListerner implements ActionListener {
+    class CancelButtonListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent actionEvent) {

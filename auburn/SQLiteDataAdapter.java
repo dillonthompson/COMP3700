@@ -11,13 +11,16 @@ public class SQLiteDataAdapter {
 
     public static final int PRODUCT_SAVED_OK = 0;
     public static final int PRODUCT_DUPLICATE_ERROR = 1;
+    public static final int CUSTOMER_SAVED_OK = 0;
+    public static final int CUSTOMER_DUPLICATE_ERROR = 1;
+
 
     Connection conn = null;
 
     public void connect() {
         try {
             // db parameters
-            String url = "jdbc:sqlite:C:/Users/ttn0007/Documents/store.db";
+            String url = "jdbc:sqlite:./COMP3700.db";
             // create a connection to the database
             conn = DriverManager.getConnection(url);
 
@@ -61,6 +64,42 @@ public class SQLiteDataAdapter {
         }
 
         return PRODUCT_SAVED_OK;
+    }
+
+    public CustomerModel loadCustomer(int CustomerID) {
+        CustomerModel Customer = new CustomerModel();
+
+        try {
+            String sql = "SELECT CustomerId, Name, Address, Phone FROM Customers WHERE CustomerId = " + CustomerID;
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            Customer.mCustomerID = rs.getInt("CusomterId");
+            Customer.mName = rs.getString("Name");
+            Customer.mAddress = rs.getString("Address");
+            Customer.mPhone = rs.getInt("Phone");
+
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return Customer;
+    }
+
+    public int saveCustomer(CustomerModel Customer) {
+        try {
+            String sql = "INSERT INTO Customers(CustomerId, Name, Address, Phone) VALUES " + Customer;
+            System.out.println(sql);
+            Statement stmt = conn.createStatement();
+            stmt.executeUpdate(sql);
+
+        } catch (Exception e) {
+            String msg = e.getMessage();
+            System.out.println(msg);
+            if (msg.contains("UNIQUE constraint failed"))
+                return CUSTOMER_DUPLICATE_ERROR;
+        }
+
+        return CUSTOMER_SAVED_OK;
     }
 
 }
