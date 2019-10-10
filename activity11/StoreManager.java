@@ -1,4 +1,3 @@
-package edu.auburn;
 
 import javax.swing.*;
 

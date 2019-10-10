@@ -81,7 +81,7 @@ public class AddCustomerUI {
             }
 
             try {
-                customer.mcustomerID = Integer.parseInt(id);
+                customer.mCustomerID = Integer.parseInt(id);
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "customerID is invalid!");
                 return;

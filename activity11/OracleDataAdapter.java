@@ -1,4 +1,3 @@
-package edu.auburn;
 
 public class OracleDataAdapter implements IDataAdapter {
     public int connect(String dbfile) {
@@ -26,4 +25,13 @@ public class OracleDataAdapter implements IDataAdapter {
         return CUSTOMER_SAVED_OK;
     }
 
+    @Override
+    public int savePurchase(PurchaseModel model) {
+        return 0;
+    }
+
+    @Override
+    public PurchaseModel loadPurchase(int id) {
+        return null;
+    }
 }

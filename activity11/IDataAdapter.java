@@ -1,4 +1,3 @@
-package edu.auburn;
 
 public interface IDataAdapter {
 
@@ -10,8 +9,13 @@ public interface IDataAdapter {
 
     public static final int PRODUCT_SAVED_OK = 0;
     public static final int PRODUCT_DUPLICATE_ERROR = 1;
+
+
     public static final int CUSTOMER_SAVED_OK = 0;
     public static final int CUSTOMER_DUPLICATE_ERROR = 1;
+
+    public static final int PURCHASE_SAVED_OK = 500;
+    public static final int PURCHASE_DUPLICATE_ERROR = 501;
 
     public int connect(String dbfile);
     public int disconnect();
@@ -21,9 +25,6 @@ public interface IDataAdapter {
     public CustomerModel loadCustomer(int id);
     public int saveCustomer(CustomerModel model);
 
-//    public int loadCustomer(int id);
-//    public int saveCustomer(CustomerModel model);
-//
-//    public int loadPurchase(int id);
-//    public int savePurchase(PurchaseModel model);
+    public PurchaseModel loadPurchase(int id);
+    public int savePurchase(PurchaseModel model);
 }

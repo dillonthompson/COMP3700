@@ -1,4 +1,3 @@
-package edu.auburn;
 
 public class CustomerModel {
     public int mcustomerID;

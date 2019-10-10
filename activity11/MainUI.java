@@ -1,4 +1,3 @@
-package edu.auburn;
 
 import javax.swing.*;
 import java.awt.*;
@@ -51,7 +50,8 @@ public class MainUI {
         btnAddPurchase.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                System.out.println("not yet fool");
+                AddPurchaseUI apu = new AddPurchaseUI();
+                apu.run();
             }
         });
 

@@ -1,4 +1,3 @@
-package edu.auburn;
 
 import java.sql.Connection;
 import java.sql.Statement;
@@ -77,7 +76,7 @@ public class SQLiteDataAdapter implements IDataAdapter {
         CustomerModel customer = new CustomerModel();
 
         try {
-            String sql = "SELECT CustomerId, Name, Address, Phone FROM Customers WHERE CustomertId = " + CustomerID;
+            String sql = "SELECT CustomerId, Name, Address, Phone FROM Customers WHERE CustomerId = " + CustomerID;
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             customer.mcustomerID = rs.getInt("ProductId");
@@ -107,5 +106,43 @@ public class SQLiteDataAdapter implements IDataAdapter {
 
         return CUSTOMER_SAVED_OK;
     }
+
+    @Override
+    public int savePurchase(PurchaseModel purchase) {
+        try {
+            String sql = "INSERT INTO Purchases VALUES " + purchase;
+            System.out.println(sql);
+            Statement stmt = conn.createStatement();
+            stmt.executeUpdate(sql);
+
+        } catch (Exception e) {
+            String msg = e.getMessage();
+            System.out.println(msg);
+            if (msg.contains("UNIQUE constraint failed"))
+                return PURCHASE_DUPLICATE_ERROR;
+        }
+
+        return PURCHASE_SAVED_OK;
+
+    }
+
+        public PurchaseModel loadPurchase(int CustomerID) {
+        PurchaseModel purchase = new PurchaseModel();
+
+        try {
+            String sql = "SELECT CustomerId, Name, Address, Phone FROM Customers WHERE CustomertId = " + CustomerID;
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            purchase.mPurchaseID = rs.getInt("ProductId");
+            purchase.mCustomerID = rs.getInt("Name");
+            purchase.mProductID = rs.getInt("Address");
+            purchase.mPrice = rs.getDouble("Phone");
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return purchase;
+    }
+
 
 }
