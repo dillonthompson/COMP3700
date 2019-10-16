@@ -183,7 +183,7 @@ public class AddPurchaseUI {
                 return;
             }
 
-            labCustomerName.setText("Product Name: " + customer.mName);
+            labCustomerName.setText("Customer Name: " + customer.mName);
 
         }
 

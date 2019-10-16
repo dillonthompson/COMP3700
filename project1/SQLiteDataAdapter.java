@@ -79,7 +79,7 @@ public class SQLiteDataAdapter implements IDataAdapter {
             String sql = "SELECT CustomerId, Name, Address, Phone FROM Customers WHERE CustomerId = " + CustomerID;
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
-            customer.mcustomerID = rs.getInt("ProductId");
+            customer.mcustomerID = rs.getInt("CustomerId");
             customer.mName = rs.getString("Name");
             customer.mAddress = rs.getString("Address");
             customer.mPhone = rs.getString("Phone");
